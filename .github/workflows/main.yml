@@ -3,7 +3,7 @@ name: Backup my Outline wiki
 on:
   schedule:
     # Cron expression for snapshot frequency (default: every 4 hours)
-    - cron: '0 */4 * * *'
+    - cron: "0 */4 * * *"
   workflow_dispatch:
 
 jobs:
