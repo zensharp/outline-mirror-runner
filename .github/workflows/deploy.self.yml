@@ -11,8 +11,6 @@ on:
         required: true
       OUTLINE_API_KEY:
         required: true
-      OUTPUT_REPO_URL:
-        required: true
 
 jobs:
   deploy_snapshots_to_self:

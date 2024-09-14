@@ -32,6 +32,8 @@ ssh-keygen -t ed25519 -f ./id_ed25519
 | `OUTPUT_REPO_URL` | The SSH url of the Mirror repository. | `git@github.com:owner/wiki-mirror.git` |
 | `OUTPUT_SSH_KEY` | The private key (`id_ed25519`) generated earlier. |  |
 
+3. In the Runner repository, add the newly created environment to `jobs.deploy_snapshots.strategy.matrix.ENVIRONMENT`.
+
 # Usage
 Now, wait for the Runner repository to trigger the workflow (default is every 4 hours). You can also manually trigger the workflow from the Actions tab.
 
