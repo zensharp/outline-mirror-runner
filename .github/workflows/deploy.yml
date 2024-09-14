@@ -25,7 +25,9 @@ jobs:
     steps:
       - name: Prepare known hosts
         run: |
-          ssh-keyscan -H github.com >> known_hosts
+          mkdir -p ~/.ssh
+          ssh-keyscan -t rsa github.com >> known_hosts 
+          cp known_hosts >> ~/.ssh/known_hosts
       - name: Generate snapshots
         run: |
           export OUTLINE_INSTANCE_URL=${{ secrets.OUTLINE_INSTANCE_URL }}
