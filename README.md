@@ -29,7 +29,7 @@ ssh-keygen -t ed25519 -f ./id_ed25519
 | --- | --- | --- |
 | `OUTLINE_INSTANCE_URL` | URL of your outline instance | `https://getoutline.com` |
 | `OUTLINE_API_KEY` | An API key generated from your outline instance | `ol_api_123456` |
-| `OUTPUT_REPO_URL` | The SSH url of the Output repository. | `git@github.com:owner/mywiki-mirror.git` |
+| `OUTPUT_REPO_URL` | The SSH url of the Output repository. | `git@github.com:owner/mywiki-mirror` |
 | `OUTPUT_SSH_KEY` | The private key (`id_ed25519`) generated earlier. |  |
 
 3. In the Runner repository, add the newly created environment to `jobs.deploy_snapshots.strategy.matrix.ENVIRONMENT`.
