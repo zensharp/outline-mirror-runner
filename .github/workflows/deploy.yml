@@ -24,7 +24,10 @@ jobs:
       name: ${{ inputs.ENVIRONMENT }}
     steps:
       - name: Generate snapshots
-        run: outline-snapshot
+        run: |
+          export OUTLINE_INSTANCE_URL=${{ secrets.GITHUB_TOKEN }}
+          export OUTLINE_API_KEY=${{ secrets.OUTLINE_API_KEY }}
+          outline-snapshot
       - name: Deploy snapshot (Markdown)
         uses: s0/git-publish-subdir-action@develop
         env:
