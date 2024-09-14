@@ -8,7 +8,7 @@ on:
 
 jobs:
   deploy_snapshots:
-    # Use the reusable workflow from https://github.com/zensharp/outline-mirror
+    # Use a reusable workflow from https://github.com/zensharp/outline-mirror
     uses: zensharp/outline-mirror/.github/workflows/deploy.yml@main
     strategy:
       matrix:
