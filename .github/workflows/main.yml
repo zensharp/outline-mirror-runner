@@ -1,35 +1,26 @@
-name: Deploy Snapshots to Git
+name: Backup my Outline wiki
 
 on:
   schedule:
+    # Cron expression for snapshot frequency (default: every 4 hours)
     - cron: '0 */4 * * *'
   workflow_dispatch:
 
-env:
-  OUTLINE_INSTANCE_URL: ${{ secrets.OUTLINE_INSTANCE_URL }}
-  OUTLINE_API_KEY: ${{ secrets.OUTLINE_API_KEY }}
-
 jobs:
-  deploy_snapshots_git:
-    runs-on: ubuntu-latest
-    container: ghcr.io/zensharp/outline-snapshot:latest
-    steps:
-      - name: Export Outline
-        run: outline-mirror
-        env:
-          OUTLINE_INSTANCE_URL: ${{ secrets.OUTLINE_INSTANCE_URL }}
-          OUTLINE_API_KEY: ${{ secrets.OUTLINE_API_KEY }}
-      - name: Deploy snapshot (JSON)
-        uses: s0/git-publish-subdir-action@develop
-        env:
-          REPO: self
-          BRANCH: mirror/json
-          FOLDER: export-json
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      - name: Deploy snapshot (Markdown)
-        uses: s0/git-publish-subdir-action@develop
-        env:
-          REPO: self
-          BRANCH: mirror/markdown
-          FOLDER: export-markdown
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  deploy_snapshots:
+    # Use the reusable workflow from https://github.com/zensharp/outline-mirror
+    uses: zensharp/outline-mirror/.github/workflows/deploy.yml@main
+    strategy:
+      matrix:
+        ENVIRONMENT:
+          # Replace this list with *your* environment names
+          - getoutline.com
+          - wiki.company.org
+          - docs.outline.net
+    with:
+      ENVIRONMENT: ${{ matrix.ENVIRONMENT }}
+    secrets:
+      OUTLINE_INSTANCE_URL: ${{ secrets.OUTLINE_INSTANCE_URL }}
+      OUTLINE_API_KEY: ${{ secrets.OUTLINE_API_KEY }}
+      OUTPUT_REPO_URL: ${{ secrets.OUTPUT_REPO_URL }}
+      OUTPUT_SSH_KEY: ${{ secrets.OUTPUT_SSH_KEY }}
