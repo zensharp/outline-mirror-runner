@@ -25,7 +25,7 @@ jobs:
     steps:
       - name: Generate snapshots
         run: |
-          export OUTLINE_INSTANCE_URL=${{ secrets.GITHUB_TOKEN }}
+          export OUTLINE_INSTANCE_URL=${{ secrets.OUTLINE_INSTANCE_URL }}
           export OUTLINE_API_KEY=${{ secrets.OUTLINE_API_KEY }}
           outline-snapshot
       - name: Deploy snapshot (Markdown)
