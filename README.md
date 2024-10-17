@@ -21,7 +21,7 @@
 ssh-keygen -t ed25519 -f ./id_ed25519
 ```
 
-1. In the Output repository, go to **Settings > Security > Deploy keys** and "Add deploy key". Paste your key, then enable "Allow write access".
+1. In the Output repository, go to **Settings > Security > Deploy keys** and "Add deploy key". Paste your **public** key, then enable "Allow write access".
 
 2. In the Runner repository, create a new environment under **Settings > Actions > General**. Add the following environment secrets:
 
@@ -30,7 +30,7 @@ ssh-keygen -t ed25519 -f ./id_ed25519
 | `OUTLINE_INSTANCE_URL` | URL of your outline instance | `https://getoutline.com` |
 | `OUTLINE_API_KEY` | An API key generated from your outline instance | `ol_api_123456` |
 | `OUTPUT_REPO_URL` | The SSH url of the Output repository. | `git@github.com:owner/mywiki-mirror` |
-| `OUTPUT_SSH_KEY` | The private key (`id_ed25519`) generated earlier. |  |
+| `OUTPUT_SSH_KEY` | The private key (`id_ed25519`) generated earlier. | `***` |
 
 3. In the Runner repository, add the newly created environment to `jobs.deploy_snapshots.strategy.matrix.ENVIRONMENT`.
 
